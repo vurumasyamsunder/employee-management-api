@@ -42,7 +42,7 @@ def get_employee(
     session: Session = Depends(get_session)
 ):
     employee = session.get(Employee, employee_id)
-
+    print("employee",employee)
     return employee
 
 
