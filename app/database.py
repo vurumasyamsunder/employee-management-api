@@ -1,0 +1,15 @@
+from sqlmodel import SQLModel,create_engine,Session
+
+#DATABASE_URL="postgresql://admin:asa@123@localhost:5432/employee_db"
+DATABASE_URL = "postgresql://postgres:12345@localhost:5432/employee_db"
+engine=create_engine(DATABASE_URL,echo=True)
+
+def create_db_and_tables():
+    SQLModel.metadata.create_all(engine)
+
+
+def get_session():
+    with Session(engine) as session:
+       yield session
+
+

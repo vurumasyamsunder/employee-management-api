@@ -1,9 +1,17 @@
 from fastapi import FastAPI
 
-app=FastAPI(title="python show fastapi",description="Employee Management API",version="1.0.0")
+from app.database import create_db_and_tables
+from app.routers.employee import router as employee_router
+from app.schemas.employee import EmployeeCreate
 
-@app.get("/")
-def home():
-    return {
-        "Employee Management System built with FastAPI"
-    }
+app = FastAPI(
+    title="Employee Management API"
+)
+
+
+@app.on_event("startup")
+def on_startup():
+    create_db_and_tables()
+
+
+app.include_router(employee_router)
