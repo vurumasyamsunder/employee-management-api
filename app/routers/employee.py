@@ -2,7 +2,7 @@ from fastapi import APIRouter,Depends
 from app.schemas.employee import EmployeeCreate
 from sqlmodel import Session,select
 from app.database import get_session
-from models.employee import Employee
+from app.models.employee import Employee
 
 router=APIRouter(prefix="/employee",tags=["Employees"])
 
